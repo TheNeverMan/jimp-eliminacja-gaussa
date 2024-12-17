@@ -50,9 +50,9 @@ Matrix * createMatrix(size_t r, size_t c) {
 		if (mat != NULL) {
 			mat->r = r;
 			mat->c = c;
-			mat->data = (double**) malloc(sizeof(double*) * r);
+			mat->data = (double**) calloc(r,sizeof(double*));
 			for (i=0; i < r; i++) {
-					mat->data[i] = (double*) malloc(sizeof(double) * c);
+					mat->data[i] = (double*) calloc(c,sizeof(double));
 			}
 		}
 
