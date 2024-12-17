@@ -1,8 +1,10 @@
 #ifndef _MAT_IO_H
 #define _MAT_IO_H
 
+#include <stdlib.h>
+
 typedef struct _Matrix {
-				int r,c;
+				size_t r,c;
 				double **data;
 } Matrix;
 
@@ -13,7 +15,7 @@ typedef struct _Matrix {
 Matrix * readFromFile(char * fname);
 void printToScreen(Matrix *mat);
 
-Matrix * createMatrix(int r, int c);
+Matrix * createMatrix(size_t r, size_t c);
 void freeMatrix(Matrix *mat);
 
 #endif
