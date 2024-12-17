@@ -7,6 +7,11 @@
 
 int main(int argc, char ** argv) {
 	int res;
+	if(argc != 3)
+	{
+		fprintf(stderr, "Niewystarczająca ilość argumentów!\n");
+		return -1;
+	}
 	Matrix* A = readFromFile(argv[1]);
 	Matrix* b = readFromFile(argv[2]);
 	Matrix * x;
