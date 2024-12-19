@@ -1,4 +1,21 @@
 #include "gauss.h"
+#include <math.h>
+#include <stdlib.h>
+
+static size_t findRowWithBiggestElementInColumn(Matrix* mat, size_t upperRowConstraint, size_t column)
+{
+    size_t resultRow = upperRowConstraint;
+
+    for (size_t i = mat->r; i-- > upperRowConstraint;) 
+    {
+        if (fabs(mat->data[i][column]) > fabs(mat->data[resultRow][column])) 
+        {
+            resultRow = i;
+        }
+    }
+
+    return resultRow;
+}
 
 static void swapRows(Matrix* mat, size_t origRowIndex, size_t swappedRowIndex)
 {
@@ -26,20 +43,6 @@ static void substractRows(Matrix* mat, size_t rowOrig, size_t rowModified)
 	while(index --> 0)
 		mat->data[rowModified][index] -= mat->data[rowOrig][index];
 
-}
-
-static size_t findRowWithBiggestElementInColumn(Matrix* mat, size_t upperRowConstraint, size_t column)
-{
-	size_t index = mat->r;
-	size_t out = upperRowConstraint;
-	double biggestElement = DBL_MIN;
-	while(index --> upperRowConstraint)
-		if(abs(mat->data[index][column]) > abs(biggestElement))
-		{
-			biggestElement = mat->data[index][column];
-			out = index;
-		}
-	return out;
 }
 
 static double getMultiplicationFactor(double value, double outcome)
